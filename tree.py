@@ -21,3 +21,58 @@ def generate(n,min_value, max_value):
         return output
     print("wybierz właściwą opcje")
     return []
+
+class Node:
+    def __init__(self,key):
+        self.key=key
+        self.right=None
+        self.left=None
+    def __show__(self):
+        print(f"{self.key} - {self.data}") 
+    def inOrderTraversalMin(self):
+        if self.left:
+            return self.left.inOrderTraversalMin()
+        print(self.key)
+    def inOrderTraversalMax(self):
+        if self.right:
+            return self.right.inOrderTraversalMax()
+        print(self.key)
+
+    def insert(self,value):
+        if self.key>value:
+            if self.left is None:
+                self.left = Node(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right=Node(value)
+            else:
+                self.right.insert(value)
+
+
+##def insert(parent, child,depth=0):
+  ##  if(parent == None):
+    ##    child.depth=depth
+      ##  return child
+    ##elif(child.key==parent.key):
+      ##  return parent
+   ## elif(child.key>parent.key):
+     ##   parent.left=insert(parent.left,child,depth+1)
+    ##else:
+      ##  parent.right=insert(parent.right,child,depth+1)
+    ##return parent
+
+Tree=Node(10)
+Tree.insert(22)
+Tree.insert(1)
+Tree.insert(8)
+Tree.insert(12)
+Tree.insert(3)
+Tree.insert(120)
+Tree.inOrderTraversalMax()
+
+
+
+
+
