@@ -21,3 +21,24 @@ def generate(n,min_value, max_value):
         return output
     print("wybierz właściwą opcje")
     return []
+
+class Node:
+    def __init__(self,key):
+        self.key=key
+        self.right=None
+        self.left=None
+        self.level=None
+    def __show__(self):
+        print(f"{self.key} - {self.data} - {self.level}") 
+
+def insert(parent, child,depth=0):
+    if(parent == None):
+        child.depth=depth
+        return child
+    elif(child.id==parent.id):
+        return parent
+    elif(child.id>parent.id):
+        parent.left=insert(parent.left,child,depth+=1)
+    else:
+        parent.right=insert(parent.right,child,depth+=1)
+    return parent
