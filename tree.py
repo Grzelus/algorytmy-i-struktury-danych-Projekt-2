@@ -30,13 +30,15 @@ class Node:
     def __show__(self):
         print(f"{self.key} - {self.data}") 
     def inOrderTraversalMin(self):
+        print(self.key)
         if self.left:
             return self.left.inOrderTraversalMin()
-        print(self.key)
+        
     def inOrderTraversalMax(self):
-        if self.right:
-            return self.right.inOrderTraversalMax()
         print(self.key)
+        if self.right:
+            self.right.inOrderTraversalMax()  
+        
 
     def insert(self,value):
         if self.key>value:
@@ -70,7 +72,7 @@ Tree.insert(8)
 Tree.insert(12)
 Tree.insert(3)
 Tree.insert(120)
-Tree.inOrderTraversalMax()
+Tree.inOrderTraversalMin()
 
 
 
