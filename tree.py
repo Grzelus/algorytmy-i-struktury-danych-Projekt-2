@@ -29,17 +29,45 @@ class Node:
         self.left=None
     def __show__(self):
         print(f"{self.key} - {self.data}") 
+    
+    ##wypisywanie preorder
+    def preOrder(self):
+        print(self.key)
+        if self.left:
+            self.left.preOrder()
+        if self.right:
+            self.right.preOrder()
+
+
+    ##znajdywanie min
     def inOrderTraversalMin(self):
         print(self.key)
         if self.left:
             return self.left.inOrderTraversalMin()
-        
+    
+    ##znajdywanie max
     def inOrderTraversalMax(self):
         print(self.key)
         if self.right:
             self.right.inOrderTraversalMax()  
-        
 
+    ##znajdowanie konkretnej wartości klucza
+    def findKey(self,value):
+        if self.key==value:
+            return
+        elif self.key>value:
+            if self.left.key == value:
+                return 
+            else:
+                self.left.findKey(value)
+        else:
+            if self.right.key == value:
+                return
+            else:
+                self.right.findKey(value)
+
+
+    ## dodawanie elementu do drzewa
     def insert(self,value):
         if self.key>value:
             if self.left is None:
@@ -52,18 +80,20 @@ class Node:
             else:
                 self.right.insert(value)
 
+##tworzenie drzewa AVL
+def AVL (Tab, Tree):
+    if len(Tab)==0:
+        return
+    if len(Tab)==1:
+        Tree.insert(Tab[0])
+        return
+    mid=len(Tab)//2
+    Tree.insert(Tab[mid])
+    left=Tab[0:mid]
+    right=Tab[mid+1:len(Tab)]
+    AVL(left,Tree)
+    AVL(right,Tree)
 
-##def insert(parent, child,depth=0):
-  ##  if(parent == None):
-    ##    child.depth=depth
-      ##  return child
-    ##elif(child.key==parent.key):
-      ##  return parent
-   ## elif(child.key>parent.key):
-     ##   parent.left=insert(parent.left,child,depth+1)
-    ##else:
-      ##  parent.right=insert(parent.right,child,depth+1)
-    ##return parent
 
 Tree=Node(10)
 Tree.insert(22)
