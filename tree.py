@@ -29,6 +29,19 @@ class Node:
         self.left=None
     def __show__(self):
         print(f"{self.key} - {self.data}") 
+
+    ## dodawanie elementu do drzewa
+    def insert(self,value):
+        if self.key>value:
+            if self.left is None:
+                self.left = Node(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right=Node(value)
+            else:
+                self.right.insert(value)
     
     ##wypisywanie preorder
     def preOrder(self):
@@ -50,35 +63,38 @@ class Node:
         print(self.key)
         if self.right:
             self.right.inOrderTraversalMax()  
-
+    ## wypisywanie poziomu drzewa
+    def printLevel(self,level):
+        if(level==0):
+            print(self.key)
+        else:
+            level-=1
+            if self.right:
+                self.right.printLevel(level)
+            if self.left:
+                self.left.printLevel(level)
     ##znajdowanie konkretnej wartości klucza
-    def findKey(self,value):
-        if self.key==value:
-            return
-        elif self.key>value:
+    def findKey(self,value,level):
+        level+=1
+        if self.key>value:
             if self.left.key == value:
-                return 
+                return level
             else:
-                self.left.findKey(value)
+                return self.left.findKey(value,level)
         else:
             if self.right.key == value:
-                return
+                return level
             else:
-                self.right.findKey(value)
-
-
-    ## dodawanie elementu do drzewa
-    def insert(self,value):
-        if self.key>value:
-            if self.left is None:
-                self.left = Node(value)
-            else:
-                self.left.insert(value)
+                return self.right.findKey(value,level)
+    ##znajdowanie poziomu i wypisanie go 
+    def levelFind(self,value):
+        level=0
+        if self.key!=value:
+            level=self.findKey(value,0)
+            self.printLevel(level)
         else:
-            if self.right is None:
-                self.right=Node(value)
-            else:
-                self.right.insert(value)
+            print(self.key)
+
 
 ##tworzenie drzewa AVL
 def AVL (Tab, Tree):
@@ -102,7 +118,8 @@ Tree.insert(8)
 Tree.insert(12)
 Tree.insert(3)
 Tree.insert(120)
-Tree.inOrderTraversalMin()
+Tree.insert(222)
+Tree.levelFind(222)
 
 
 
