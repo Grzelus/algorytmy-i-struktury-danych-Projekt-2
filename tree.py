@@ -22,6 +22,9 @@ def generate(n,min_value, max_value):
     print("wybierz właściwą opcje")
     return []
 
+def children_check(tab,parent,n):
+    (tab[parent],tab[maxim])=(tab[maxim],tab[parent]) 
+
 class Node:
     def __init__(self,key):
         self.key=key
@@ -42,6 +45,7 @@ class Node:
                 self.right=Node(value)
             else:
                 self.right.insert(value)
+
     
     ##wypisywanie preorder
     def preOrder(self):
@@ -50,7 +54,14 @@ class Node:
             self.left.preOrder()
         if self.right:
             self.right.preOrder()
-
+            
+    ##wypisywanie w porządku malejącym
+    def decreasing(self):
+        if self.right:
+            self.right.decreasing()
+        print(self.key)
+        if self.left:
+            self.left.decreasing()
 
     ##znajdywanie min
     def inOrderTraversalMin(self):
@@ -119,7 +130,7 @@ Tree.insert(12)
 Tree.insert(3)
 Tree.insert(120)
 Tree.insert(222)
-Tree.levelFind(222)
+Tree.decreasing()
 
 
 
