@@ -3,6 +3,7 @@ class Node:
         self.key = key
         self.left = None
         self.right = None
+        self.height = 1
 
 
 class BST:
@@ -68,18 +69,68 @@ class BST:
         while current.left:
             current = current.left
         return current
-        
+    
 
-tree = BST()
-for key in [50, 30, 70, 20, 40, 60, 80]:
-    tree.insert(key)
+    class AVL:
+        def __init__(self):
+             self.root = None
 
-print("In-order traversal:")
-tree.inorder()  # Powinno wypisać: 20 30 40 50 60 70 80
+        def build_from_sorted_list(self, list):
+            def build(low, high):
+                if low > high:
+                    return None
+                mid = (low + high) // 2
+                node = Node(list[mid])
+                node.left = build(low, mid-1)
+                node.right = build(mid+1, high)
+                return node
+            self.root = build(0, len(list)-1)
 
-print("Szukam 60:", "Znaleziono" if tree.search(60) else "Nie znaleziono")
+        def preorder(self, node):
+            if node:
+                print(node.key, end=" ")
+                self.preorder(node.left)
+                self.preorder(node.right)
 
-tree.delete(70)
-print("Po usunięciu 70:")
-tree.inorder()  # 20 30 40 50 60 80
-        
+        def search(self, node, key):
+            if node is None or node.key == key:
+                return node
+            if key < node.key:
+                return self.search(node.left, key)
+            else:
+                return self.search(node.right, key)
+            
+        def get_height(self, node):
+            if not node:
+                return 0
+            return node.height
+
+
+        def get_balance(self, node):
+            if not node:
+                return 0
+            return self.get_height(node.left) - self.get_height(node.right)
+
+        def rotate_left(self, z):
+            y = z.right
+            T2 = y.left
+
+            y.left = z
+            z.right = T2
+
+            z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+            y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+
+            return y
+
+        def rotate_right(self, y):
+            x = y.left
+            T2 = x.right
+
+            x.right = y
+            y.left = T2
+
+            y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
+            x.height = 1 + max(self.get_height(x.left), self.get_height(x.right))
+
+            return x
