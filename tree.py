@@ -2,8 +2,9 @@ import time
 from datetime import timedelta
 import random
 import sys
-
 sys.setrecursionlimit(100000)
+from collections import deque
+
 
 def generate(n,min_value, max_value):
     if(min_value > max_value):
@@ -22,18 +23,16 @@ def generate(n,min_value, max_value):
     print("wybierz właściwą opcje")
     return []
 
-def children_check(tab,parent,n):
-    (tab[parent],tab[maxim])=(tab[maxim],tab[parent]) 
-
 class Node:
     def __init__(self,key):
         self.key=key
         self.right=None
         self.left=None
+        self.parent=None
     def __show__(self):
         print(f"{self.key} - {self.data}") 
 
-    ## dodawanie elementu do drzewa
+    ## dodawanie elementu do drzewa BST
     def insert(self,value):
         if self.key>value:
             if self.left is None:
@@ -45,6 +44,39 @@ class Node:
                 self.right=Node(value)
             else:
                 self.right.insert(value)
+
+    ## dodawanie wartości na koniec kopca(Heap)
+    def childrenCheck(self):
+        actual=Node(0)
+        actual=self
+        if actual.parent and actual.parent.key>actual.key:
+            [actual.parent.key,actual.key]=[actual.key,actual.parent.key]
+            actual.parent.childrenCheck()
+    
+    def HeapMinInsert(self,value):
+        if not self:
+            self.key=value
+    
+        queue = deque([self])  # Kolejka przechowująca węzły do zwiedzenia
+    
+        while queue:
+            node = queue.popleft()  # Pobieramy pierwszy węzeł
+        
+            if node.left:
+                queue.append(node.left)  # Dodajemy lewego potomka
+            else:
+                node.left=Node(value)
+                node.left.parent=node
+                node.left.childrenCheck()
+                return
+            if node.right:
+                queue.append(node.right)  # Dodajemy prawego potomka
+            else:
+                node.right=Node(value)
+                node.right.parent=node
+                node.right.childrenCheck()
+                return
+    
 
     
     ##wypisywanie preorder
@@ -123,14 +155,17 @@ def AVL (Tab, Tree):
 
 
 Tree=Node(10)
-Tree.insert(22)
-Tree.insert(1)
-Tree.insert(8)
-Tree.insert(12)
-Tree.insert(3)
-Tree.insert(120)
-Tree.insert(222)
-Tree.decreasing()
+Tree.HeapMinInsert(22)
+Tree.HeapMinInsert(1)
+Tree.HeapMinInsert(8)
+Tree.HeapMinInsert(12)
+Tree.HeapMinInsert(3)
+Tree.HeapMinInsert(120)
+Tree.HeapMinInsert(222)
+Tree.printLevel(0)
+Tree.printLevel(1)
+Tree.printLevel(2)
+Tree.printLevel(3)
 
 
 
