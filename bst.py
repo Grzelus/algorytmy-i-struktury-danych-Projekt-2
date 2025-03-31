@@ -52,7 +52,19 @@ class BST:
         else:
             print("Nie znaleziono klucza.")
 
-
+    def find_min(self, node):
+        if node.left is None:
+            return node
+        else:
+            print(f"{node.key} -> ", end="")
+            return self.find_min(node.left)
+        
+    def find_max(self, node):
+        if node.right is None:
+            return node
+        else:
+            print(f"{node.key} -> ", end="")
+            return self.find_max(node.right)
 
     def balance_dsw(self):
         dummy = Node(None)

@@ -17,6 +17,20 @@ class AVL:
 
         self.root = build(0, len(array) - 1)
 
+    def find_min(self, node):
+        if node.left is None:
+            return node
+        else:
+            print(f"{node.key} -> ", end="")
+            return self.find_min(node.left)
+        
+    def find_max(self, node):
+        if node.right is None:
+            return node
+        else:
+            print(f"{node.key} -> ", end="")
+            return self.find_max(node.right)
+
     def preorder(self):
         def _preorder(node):
             if node:
