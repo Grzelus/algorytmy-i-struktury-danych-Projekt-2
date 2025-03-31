@@ -46,31 +46,43 @@ def create_input_data(choice):
     return data
     
 
+while 1:
+    tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n 3) Heap Min"))
+    input_type = int(input("Skąd chcesz pobrać dane:\n1) Z pliku tekstowego\n2) generowane losowo"))
 
-tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n 3) Heap Min"))
-input_type = int(input("Skąd chcesz pobrać dane:\n1) Z pliku tekstowego\n2) generowane losowo"))
+    data = create_input_data(input_type)
 
-data = create_input_data(input_type)
+    tree = None
 
-tree = None
+    if tree_type == 1:
+        tree = BST()
+        for num in data:
+            tree.insert(num)
+            print("Przed równoważeniem:")
+            print("Po równoważeniu:")
 
-if tree_type == 1:
-    tree = BST()
-    for num in data:
-        tree.insert(num)
+    elif tree_type == 2:
+        tree = AVL()
+        data.sort()
+        tree.build_from_sorted_list(data)
 
-elif tree_type == 2:
-    tree = AVL()
-    data.sort()
-    tree.build_from_sorted_list(data)
+    elif tree_type == 3:
+        tree = HeapMinTree()
+        for num in data:
+            tree.insert(num)
 
-elif tree_type == 3:
-    tree = HeapMinTree()
-    for num in data:
-        tree.insert(num)
+    else:
+        print("niepoprawny wybór drzewa")
+    print("1) Wyszukanie najmniejszego elementu wraz ze ścieżką do niego prowadzącą")
+    print("2) Wyszukanie najwiekszego elementu wraz ze ścieżką")
+    print("3) Wyszukanie elementu i wypisanie całego poziomu drzewa")
+    print("4) Wypisanie całego drzewa w porządku malejącym")
+    print("5) Wypisanie podrzewa w porządku pre-order")
+    choice=int(input("Wybierz operację"))
+    if choice==1:
+        tree.
 
-else:
-    print("niepoprawny wybór drzewa")
+
 
 
 
