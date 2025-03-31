@@ -53,35 +53,110 @@ while 1:
     data = create_input_data(input_type)
 
     tree = None
+    print("1) Wyszukanie najmniejszego elementu wraz ze ścieżką do niego prowadzącą")
+    print("2) Wyszukanie najwiekszego elementu wraz ze ścieżką")
+    print("3) Wyszukanie elementu i wypisanie całego poziomu drzewa")
+    print("4) Wypisanie całego drzewa w porządku malejącym")
+    print("5) Wypisanie poddrzewa w porządku pre-order")
+    choice=int(input("Wybierz operację"))
 
     if tree_type == 1:
         tree = BST()
         for num in data:
             tree.insert(num)
-            print("Przed równoważeniem:")
-            print("Po równoważeniu:")
+        print("Przed równoważeniem:")
+        tree.print_levels()    
+        tree.balance_dsw
+        print("Po równoważeniu:")
+        tree.print_levels()
 
+        if choice==1:
+            start=time.time()
+            tree.find_min()
+            end=time.time()
+        elif choice==2:
+            start=time.time()
+            tree.find_max()
+            end=time.time()
+        elif choice==3:
+            key=int(input("Podaj klucz: "))
+            start=time.time()
+            tree.find_level(key)
+            end=time.time()
+        elif choice==4:
+            start=time.time()
+            tree.decreasing(tree)
+            end=time.time()
+        elif choice==5:
+            start=time.time()
+            tree.
+            end=time.time()
+        else:
+            print("Nie ma takiej opcji")
     elif tree_type == 2:
+
         tree = AVL()
         data.sort()
         tree.build_from_sorted_list(data)
+        
+        if choice==1:
+            start=time.time()
+            tree.find_min()
+            end=time.time()
+        elif choice==2:
+            start=time.time()
+            tree.find_max()
+            end=time.time()
+        elif choice==3:
+            key=int(input("Podaj klucz: "))
+            start=time.time()
+            tree.find_level(key)
+            end=time.time()
+        elif choice==4:
+            start=time.time()
+            tree.decreasing()
+            end=time.time()
+        elif choice==5:
+            start=time.time()
+            tree.
+            end=time.time()
+        else:
+            print("Nie ma takiej opcji")
 
     elif tree_type == 3:
         tree = HeapMinTree()
         for num in data:
             tree.insert(num)
+        if choice==1:
+            start=time.time()
+            tree.find_min()
+            end=time.time()
+        elif choice==2:
+            start=time.time()
+            tree.find_max()
+            end=time.time()
+        elif choice==3:
+            key=int(input("Podaj klucz: "))
+            start=time.time()
+            tree.find_level(key)
+            end=time.time()
+        elif choice==4:
+            start=time.time()
+            tree.decreasing()
+            end=time.time()
+        elif choice==5:
+            start=time.time()
+            tree.
+            end=time.time()
+        else:
+            print("Nie ma takiej opcji")
 
     else:
         print("niepoprawny wybór drzewa")
-    print("1) Wyszukanie najmniejszego elementu wraz ze ścieżką do niego prowadzącą")
-    print("2) Wyszukanie najwiekszego elementu wraz ze ścieżką")
-    print("3) Wyszukanie elementu i wypisanie całego poziomu drzewa")
-    print("4) Wypisanie całego drzewa w porządku malejącym")
-    print("5) Wypisanie podrzewa w porządku pre-order")
-    choice=int(input("Wybierz operację"))
-    if choice==1:
-        tree.
-
+    timeDifference=end-start
+    print(f"czas operacji wynosi: {timeDifference}")
+    
+    
 
 
 

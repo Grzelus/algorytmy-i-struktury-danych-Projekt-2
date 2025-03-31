@@ -31,7 +31,7 @@ class AVL:
             print(f"{node.key} -> ", end="")
             return self.find_max(node.right)
 
-    def preorder(self):
+    def preorder(self): 
         def _preorder(node):
             if node:
                 print(node.key)

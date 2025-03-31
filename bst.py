@@ -1,4 +1,4 @@
-
+from collections import deque
 from node import Node
 
 class BST:
@@ -72,6 +72,23 @@ class BST:
         vine_size = self._create_branch(dummy)
         self._vine_to_tree(dummy, vine_size)
         self.root = dummy.right
+
+    def print_levels(self):
+        if not self.root:
+            return
+        queue = deque([(self.root, 0)])
+        current_level = 0
+        print("Level 0:")
+        while queue:
+            node, level = queue.popleft()
+            if level != current_level:
+                current_level = level
+                print(f"Level {level}:")
+            print(node.key)
+            if node.left:
+                queue.append((node.left, level + 1))
+            if node.right:
+                queue.append((node.right, level + 1))
 
     def _create_branch(self, tail):
         count = 0
