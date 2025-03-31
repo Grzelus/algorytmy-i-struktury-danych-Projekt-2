@@ -31,10 +31,10 @@ def generate(n,min_value, max_value):
     return []
 
 def create_input_data(choice):
-    if input_type == 1:
+    if choice == 1:
         file_name = input("podaj nazwę pliku")
-        data = read_from_file("filename")
-    elif input_type == 2:
+        data = read_from_file(file_name)
+    elif choice == 2:
         n = int(input("Ile liczb chcesz wygenerować?"))
         min_value = int(input("Podaj wartość minimalną losowanych liczb:"))
         max_value = int(input("Podaj wartość maksymalną losowanych liczb:"))
@@ -59,12 +59,12 @@ if tree_type == 1:
     for num in data:
         tree.insert(num)
 
-if tree_type == 2:
+elif tree_type == 2:
     tree = AVL()
     data.sort()
     tree.build_from_sorted_list(data)
 
-if tree_type == 3:
+elif tree_type == 3:
     tree = HeapMinTree()
     for num in data:
         tree.insert(num)
