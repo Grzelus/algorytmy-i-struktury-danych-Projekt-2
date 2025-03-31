@@ -56,3 +56,36 @@ class HeapMinTree:
                 queue.append((node.left, level + 1))
             if node.right:
                 queue.append((node.right, level + 1))
+    def minVal(self):
+        print(self.root.key)
+    def maxVal(self):
+        if not self.root:
+            return
+        maks=Node(0)
+        queue = deque([(self.root)])
+        while queue:
+            node= queue.popleft()
+            if node.left:
+                queue.append(node.left)
+            else:
+                if maks.key< node.key:
+                    maks=node
+            if node.left:
+                queue.append(node.right)
+            else:
+                if maks.key<node.key:
+                    maks=node
+        queue.clear()
+        node=maks
+        while node is not self.root:
+            queue.appendleft(node.key)
+            node=node.parent
+        print(f"{self.root.key} ",end="")
+        while queue:
+            actual=queue.popleft()
+            print(f" -> {actual}",end="")
+        print()
+
+
+
+
