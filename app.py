@@ -61,7 +61,7 @@ if tree_type == 1:
 
 if tree_type == 2:
     tree = AVL()
-    data = data.sort()
+    data.sort()
     tree.build_from_sorted_list(data)
 
 if tree_type == 3:
