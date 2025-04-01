@@ -54,6 +54,7 @@ class BST:
 
     def find_min(self, node):
         if node.left is None:
+            print(node.key)
             return node
         else:
             print(f"{node.key} -> ", end="")
@@ -61,6 +62,7 @@ class BST:
         
     def find_max(self, node):
         if node.right is None:
+            print(node.key)
             return node
         else:
             print(f"{node.key} -> ", end="")
