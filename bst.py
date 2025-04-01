@@ -85,12 +85,13 @@ class BST:
             node, level = queue.popleft()
             if level != current_level:
                 current_level = level
-                print(f"Level {level}:")
-            print(node.key)
+                print(f"\nLevel {level}:")
+            print(node.key, end=" ")
             if node.left:
                 queue.append((node.left, level + 1))
             if node.right:
                 queue.append((node.right, level + 1))
+        print("\n")
 
     def _create_branch(self, tail):
         count = 0
