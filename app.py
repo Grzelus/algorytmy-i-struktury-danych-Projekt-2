@@ -20,27 +20,27 @@ def generate(n,min_value, max_value):
     
     output = [random.randint(min_value,max_value) for _ in range(n)]
 
-    choice = int(input("Wybierz sposób sortowania wygenerowanych liczb \n 1) losowo\n 2) rosnąco "))
+    choice = int(input("Wybierz sposób sortowania wygenerowanych liczb \n 1) losowo\n 2) rosnąco\n"))
 
     if choice == 1:
         return output
     if choice == 2:
         output.sort()
         return output
-    print("wybierz właściwą opcje")
+    print("Wybierz właściwą opcje: ")
     return []
 
 def create_input_data(choice):
     if choice == 1:
-        file_name = input("podaj nazwę pliku")
+        file_name = input("Podaj nazwę pliku: ")
         data = read_from_file(file_name)
     elif choice == 2:
-        n = int(input("Ile liczb chcesz wygenerować?"))
-        min_value = int(input("Podaj wartość minimalną losowanych liczb:"))
-        max_value = int(input("Podaj wartość maksymalną losowanych liczb:"))
+        n = int(input("Ile liczb chcesz wygenerować: "))
+        min_value = int(input("Podaj wartość minimalną losowanych liczb: "))
+        max_value = int(input("Podaj wartość maksymalną losowanych liczb: "))
         data = generate(n, min_value, max_value)
     else:
-        print("Wybierz właściwą opcję.")
+        print("Wybierz właściwą opcję: ")
         data = []
 
     return data
@@ -53,12 +53,12 @@ while 1:
     print("4) Wypisanie całego drzewa w porządku malejącym")
     print("5) Wypisanie poddrzewa w porządku pre-order")
     print("6) Quit")
-    choice=int(input("Wybierz operację"))
+    choice=int(input("Wybierz operację: "))
     if choice == 6:
         break
 
-    tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n3) Heap Min"))
-    input_type = int(input("Skąd chcesz pobrać dane:\n1) Z pliku tekstowego\n2) generowane losowo"))
+    tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n3) Heap Min\n"))
+    input_type = int(input("Skąd chcesz pobrać dane:\n1) Z pliku tekstowego\n2) generowane losowo\n"))
 
     data = create_input_data(input_type)
 
@@ -68,13 +68,13 @@ while 1:
         tree = BST()
         for num in data:
             tree.insert(num)
-        print("Przed równoważeniem:")
+        print("Przed równoważeniem: ")
         tree.print_levels()    
         balanceSt=time.time()
         tree.balance_dsw()
         balanceEnd=time.time()
 
-        print("Po równoważeniu:")
+        print("Po równoważeniu: ")
         tree.print_levels()
         print(f"Czas równoważenia wynosił: {balanceEnd-balanceSt}")
 
