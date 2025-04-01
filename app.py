@@ -66,17 +66,17 @@ while 1:
             tree.insert(num)
         print("Przed równoważeniem:")
         tree.print_levels()    
-        tree.balance_dsw
+        tree.balance_dsw()
         print("Po równoważeniu:")
         tree.print_levels()
 
         if choice==1:
             start=time.time()
-            tree.find_min()
+            tree.find_min(tree.root)
             end=time.time()
         elif choice==2:
             start=time.time()
-            tree.find_max()
+            tree.find_max(tree.root)
             end=time.time()
         elif choice==3:
             key=int(input("Podaj klucz: "))
@@ -102,11 +102,11 @@ while 1:
         
         if choice==1:
             start=time.time()
-            tree.find_min()
+            tree.find_min(tree.root)
             end=time.time()
         elif choice==2:
             start=time.time()
-            tree.find_max()
+            tree.find_max(tree.root)
             end=time.time()
         elif choice==3:
             key=int(input("Podaj klucz: "))
@@ -131,11 +131,11 @@ while 1:
             tree.insert(num)
         if choice==1:
             start=time.time()
-            tree.find_min()
+            tree.find_min(tree.root)
             end=time.time()
         elif choice==2:
             start=time.time()
-            tree.find_max()
+            tree.find_max(tree.root)
             end=time.time()
         elif choice==3:
             key=int(input("Podaj klucz: "))
@@ -148,7 +148,7 @@ while 1:
             end=time.time()
         elif choice==5:
             start=time.time()
-            tree.
+            # tree.
             end=time.time()
         else:
             print("Nie ma takiej opcji")
@@ -159,7 +159,6 @@ while 1:
     print(f"czas operacji wynosi: {timeDifference}")
     
     
-
 
 
 

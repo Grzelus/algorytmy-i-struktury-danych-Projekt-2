@@ -122,18 +122,16 @@ class BST:
             size //= 2
 
     def _rotate_left(self, root):
-        temp = root.right
-        temp_left = temp.left
-        temp.left = root
-        root.right = temp_left
-        return temp
+        temp = root.right         
+        root.right = temp.left    
+        temp.left = root          
+        return temp               
 
     def _rotate_right(self, root):
-        temp = root.left
-        temp.right = temp.right
-        temp.right = root
-        root.left = temp.right
-        return temp
+        temp = root.left          
+        root.left = temp.right     
+        temp.right = root         
+        return temp               
     
     def print_level(self, target_level):
         def _print_level(node, level):
