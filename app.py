@@ -47,18 +47,22 @@ def create_input_data(choice):
     
 
 while 1:
+    print("1) Wyszukanie najmniejszego elementu wraz ze ścieżką do niego prowadzącą")
+    print("2) Wyszukanie najwiekszego elementu wraz ze ścieżką")
+    print("3) Wyszukanie elementu i wypisanie całego poziomu drzewa")
+    print("4) Wypisanie całego drzewa w porządku malejącym")
+    print("5) Wypisanie poddrzewa w porządku pre-order")
+    print("6) Quit")
+    choice=int(input("Wybierz operację"))
+    if choice == 6:
+        break
+
     tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n 3) Heap Min"))
     input_type = int(input("Skąd chcesz pobrać dane:\n1) Z pliku tekstowego\n2) generowane losowo"))
 
     data = create_input_data(input_type)
 
     tree = None
-    print("1) Wyszukanie najmniejszego elementu wraz ze ścieżką do niego prowadzącą")
-    print("2) Wyszukanie najwiekszego elementu wraz ze ścieżką")
-    print("3) Wyszukanie elementu i wypisanie całego poziomu drzewa")
-    print("4) Wypisanie całego drzewa w porządku malejącym")
-    print("5) Wypisanie poddrzewa w porządku pre-order")
-    choice=int(input("Wybierz operację"))
 
     if tree_type == 1:
         tree = BST()
@@ -66,9 +70,12 @@ while 1:
             tree.insert(num)
         print("Przed równoważeniem:")
         tree.print_levels()    
+        balanceSt=time.time()
         tree.balance_dsw
+        balanceEnd=time.time()
         print("Po równoważeniu:")
         tree.print_levels()
+        print(f"Czas równoważenia wynosił: {balanceEnd-balanceSt}")
 
         if choice==1:
             start=time.time()
@@ -80,17 +87,12 @@ while 1:
             end=time.time()
         elif choice==3:
             key=int(input("Podaj klucz: "))
-            start=time.time()
+
             tree.find_level(key)
-            end=time.time()
         elif choice==4:
-            start=time.time()
             tree.decreasing(tree)
-            end=time.time()
         elif choice==5:
-            start=time.time()
             tree.
-            end=time.time()
         else:
             print("Nie ma takiej opcji")
     elif tree_type == 2:
@@ -109,17 +111,11 @@ while 1:
             end=time.time()
         elif choice==3:
             key=int(input("Podaj klucz: "))
-            start=time.time()
             tree.find_level(key)
-            end=time.time()
         elif choice==4:
-            start=time.time()
             tree.decreasing()
-            end=time.time()
         elif choice==5:
-            start=time.time()
             tree.
-            end=time.time()
         else:
             print("Nie ma takiej opcji")
 
@@ -137,17 +133,12 @@ while 1:
             end=time.time()
         elif choice==3:
             key=int(input("Podaj klucz: "))
-            start=time.time()
             tree.find_level(key)
-            end=time.time()
         elif choice==4:
-            start=time.time()
             tree.decreasing()
-            end=time.time()
+
         elif choice==5:
-            start=time.time()
             tree.
-            end=time.time()
         else:
             print("Nie ma takiej opcji")
 
