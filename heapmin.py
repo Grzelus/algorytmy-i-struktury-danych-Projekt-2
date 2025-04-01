@@ -115,7 +115,7 @@ class HeapMinTree:
             else:
                 _print_level(node.left, level - 1)
                 _print_level(node.right, level - 1)
-
+        print(f"Poziom drzewa: {target_level}")
         _print_level(self.root, target_level)
 
 
