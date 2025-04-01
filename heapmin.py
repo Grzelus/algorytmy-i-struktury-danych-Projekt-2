@@ -90,21 +90,21 @@ class HeapMinTree:
         print()
 
     def find_level(self, value):
-        def find_key(node, value, level):
-            if not node:
-                return -1
-            if node.key == value:
-                return level
-            elif value < node.key:
-                return find_key(node.left, value, level + 1)
-            else:
-                return find_key(node.right, value, level + 1)
+        if not self.root:
+            print("Drzewo jest puste.")
+            return
 
-        level = find_key(self.root, value, 0)
-        if level != -1:
-            self.print_level(level)
-        else:
-            print("Nie znaleziono klucza.")
+        queue = deque([(self.root, 0)])
+        while queue:
+            node, level = queue.popleft()
+            if node.key == value:
+                self.print_level(level)
+                return
+            if node.left:
+                queue.append((node.left, level + 1))
+            if node.right:
+                queue.append((node.right, level + 1))
+        print("Nie znaleziono klucza.")
 
     def print_level(self, target_level):
         def _print_level(node, level):
