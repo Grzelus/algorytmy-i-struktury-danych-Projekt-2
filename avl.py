@@ -33,6 +33,15 @@ class AVL:
             print(f"{node.key} -> ", end="")
             return self.find_max(node.right)
 
+    def decreasing(self):
+        self._decreasing(self.root)
+
+    def _decreasing(self, node):
+        if node:
+            self._decreasing(node.right)
+            print(node.key,end=" ")
+            self._decreasing(node.left)
+
     def _preorder(self, node):
         if node:
             print(node.key)
