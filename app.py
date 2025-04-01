@@ -64,6 +64,8 @@ while 1:
 
     tree = None
 
+    start=-1
+    end=-1
     if tree_type == 1:
         tree = BST()
         for num in data:
@@ -78,8 +80,6 @@ while 1:
         tree.print_levels()
         print(f"Czas równoważenia wynosił: {balanceEnd-balanceSt}")
 
-        start=-1
-        end=-1
         if choice==1:
             start=time.time()
             tree.find_min(tree.root)
@@ -112,19 +112,25 @@ while 1:
         tree.build_from_sorted_list(data)
         
         if choice==1:
+            tree.print_levels()
             start=time.time()
             tree.find_min(tree.root)
             end=time.time()
         elif choice==2:
+            tree.print_levels()
             start=time.time()
             tree.find_max(tree.root)
             end=time.time()
         elif choice==3:
+            tree.print_levels()
             key=int(input("Podaj klucz: "))
             tree.find_level(key)
         elif choice==4:
+            tree.print_levels()
             tree.decreasing()
+            print("\n")
         elif choice==5:
+            tree.print_levels()
             key=int(input("Podaj klucz: "))
             start=time.time()
             tree.print_and_delete_subtree(key)
@@ -165,7 +171,6 @@ while 1:
         print(f"czas operacji wynosi: {timeDifference}")
     
     
-
 
 
 
