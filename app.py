@@ -143,20 +143,24 @@ while 1:
         for num in data:
             tree.insert(num)
         if choice==1:
+            tree.print_levels()
             start=time.time()
-            tree.find_min(tree.root)
+            tree.minVal()
             end=time.time()
         elif choice==2:
+            tree.print_levels()
             start=time.time()
-            tree.find_max(tree.root)
+            tree.maxVal()
             end=time.time()
         elif choice==3:
+            tree.print_levels()
             key=int(input("Podaj klucz: "))
             tree.find_level(key)
         elif choice==4:
-            tree.decreasing()
+            print("Opcja niedostępna")
 
         elif choice==5:
+            tree.print_levels()
             key=int(input("Podaj klucz: "))
             start=time.time()
             tree.print_and_delete_subtree(key)

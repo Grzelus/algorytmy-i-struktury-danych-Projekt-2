@@ -50,12 +50,13 @@ class HeapMinTree:
             node, level = queue.popleft()
             if level != current_level:
                 current_level = level
-                print(f"Level {level}:")
-            print(node.key)
+                print(f"\nLevel {level}:")
+            print(node.key,end=" ")
             if node.left:
                 queue.append((node.left, level + 1))
             if node.right:
                 queue.append((node.right, level + 1))
+        print("\n")
                 
     def minVal(self):
         print(self.root.key)
@@ -87,6 +88,36 @@ class HeapMinTree:
             actual=queue.popleft()
             print(f" -> {actual}",end="")
         print()
+
+    def find_level(self, value):
+        def find_key(node, value, level):
+            if not node:
+                return -1
+            if node.key == value:
+                return level
+            elif value < node.key:
+                return find_key(node.left, value, level + 1)
+            else:
+                return find_key(node.right, value, level + 1)
+
+        level = find_key(self.root, value, 0)
+        if level != -1:
+            self.print_level(level)
+        else:
+            print("Nie znaleziono klucza.")
+
+    def print_level(self, target_level):
+        def _print_level(node, level):
+            if not node:
+                return
+            if level == 0:
+                print(node.key)
+            else:
+                _print_level(node.left, level - 1)
+                _print_level(node.right, level - 1)
+
+        _print_level(self.root, target_level)
+
 
     def _search(self,value):
         if not self.root:
