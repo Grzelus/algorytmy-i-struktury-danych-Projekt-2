@@ -72,7 +72,7 @@ class HeapMinTree:
             else:
                 if maks.key< node.key:
                     maks=node
-            if node.left:
+            if node.right:
                 queue.append(node.right)
             else:
                 if maks.key<node.key:
@@ -87,6 +87,23 @@ class HeapMinTree:
             actual=queue.popleft()
             print(f" -> {actual}",end="")
         print()
+
+    def _search(self,value):
+        if not self.root:
+            return
+        if self.root.key>value:
+            print("Nie ma takiego elementu")
+            return
+        queue = deque([(self.root)])
+        while queue:
+          #  print(queue[0].key)
+            node= queue.popleft()
+            if node.key==value:
+                return node
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
 
 
 

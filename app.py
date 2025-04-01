@@ -70,10 +70,10 @@ while 1:
             tree.insert(num)
         print("Przed równoważeniem:")
         tree.print_levels()    
-<<<<<<< HEAD
-
+        balanceSt=time.time()
         tree.balance_dsw()
->>>>>>> f413336b3090c723b5da532b836e404c4c52612e
+        balanceEnd=time.time()
+
         print("Po równoważeniu:")
         tree.print_levels()
         print(f"Czas równoważenia wynosił: {balanceEnd-balanceSt}")
@@ -93,14 +93,14 @@ while 1:
         elif choice==4:
             tree.decreasing(tree)
         elif choice==5:
-<<<<<<< HEAD
 
-=======
+
+
             key=int(input("Podaj klucz: "))
             start=time.time()
             tree.print_and_delete_subtree(key)
             end=time.time()
->>>>>>> f413336b3090c723b5da532b836e404c4c52612e
+
         else:
             print("Nie ma takiej opcji")
     elif tree_type == 2:
@@ -123,14 +123,10 @@ while 1:
         elif choice==4:
             tree.decreasing()
         elif choice==5:
-<<<<<<< HEAD
-
-=======
             key=int(input("Podaj klucz: "))
             start=time.time()
             tree.print_and_delete_subtree(key)
             end=time.time()
->>>>>>> f413336b3090c723b5da532b836e404c4c52612e
         else:
             print("Nie ma takiej opcji")
 
@@ -153,12 +149,10 @@ while 1:
             tree.decreasing()
 
         elif choice==5:
-<<<<<<< HEAD
 
             start=time.time()
             # tree.
             end=time.time()
->>>>>>> f413336b3090c723b5da532b836e404c4c52612e
         else:
             print("Nie ma takiej opcji")
 
