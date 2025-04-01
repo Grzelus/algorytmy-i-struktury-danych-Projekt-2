@@ -79,5 +79,7 @@ class AVL:
             self._preorder(node)
             print(f"Wysokość poddrzewa: {self._height(node)}")
             self.root = self._delete_subtree(self.root, key)
+            self._preorder(self.root)
+
         else:
             print(f"Nie znaleziono węzła o kluczu {key}.")

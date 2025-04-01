@@ -104,7 +104,54 @@ class HeapMinTree:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
+        return None
 
 
+    def _postorder_delete(self, node):
+        if not node:
+            return
+        self._postorder_delete(node.left)
+        self._postorder_delete(node.right)
+        
+        if node.parent:
+            if node.parent.left == node:
+                node.parent.left = None
+            elif node.parent.right == node:
+                node.parent.right = None
+        else:
+            self.root = None 
+        node.left = node.right = node.parent = None
 
+    def _height(self, node):
+        if not node:
+            return -1
+        return 1 + max(self._height(node.left), self._height(node.right))
+    
+    def _preorder(self, node):
+        if node:
+            print(node.key, end=" ")
+            self._preorder(node.left)
+            self._preorder(node.right)
 
+    
+    def print_and_delete_subtree(self, key):
+        node = self._search(key)
+        if node:
+            print(f"Poddrzewo o korzeniu {key} (preorder):")
+            self._preorder(node)
+            print(f"\nWysokość poddrzewa: {self._height(node)}")
+
+            if node.parent:
+                if node.parent.left == node:
+                    node.parent.left = None
+                elif node.parent.right == node:
+                    node.parent.right = None
+            else:
+                self.root = None
+
+            self._postorder_delete(node)
+
+            print("\nDrzewo po usunięciu (preorder):")
+            self._preorder(self.root)
+        else:
+            print(f"Nie znaleziono węzła o kluczu {key}.")

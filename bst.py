@@ -176,7 +176,6 @@ class BST:
             return
         self._postorder_delete(node.left)
         self._postorder_delete(node.right)
-        print(f"Usuwanie węzła: {node.key}")
         node.left = None
         node.right = None
         node.parent = None
@@ -188,5 +187,6 @@ class BST:
             self._preorder(node)
             print(f"Wysokość poddrzewa: {self._height(node)}")
             self.root = self._delete_subtree(self.root, key)
+            self._preorder(self.root)
         else:
             print(f"Nie znaleziono węzła o kluczu {key}.")

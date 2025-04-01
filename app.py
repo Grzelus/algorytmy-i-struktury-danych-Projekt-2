@@ -151,9 +151,9 @@ while 1:
             tree.decreasing()
 
         elif choice==5:
-
+            key=int(input("Podaj klucz: "))
             start=time.time()
-            # tree.
+            tree.print_and_delete_subtree(key)
             end=time.time()
         else:
             print("Nie ma takiej opcji")
