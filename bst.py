@@ -23,7 +23,7 @@ class BST:
     def _decreasing(self, node):
         if node:
             self._decreasing(node.right)
-            print(node.key)
+            print(node.key,end=" ")
             self._decreasing(node.left)
 
     def preorder(self):

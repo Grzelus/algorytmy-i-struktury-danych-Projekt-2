@@ -57,7 +57,7 @@ while 1:
     if choice == 6:
         break
 
-    tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n 3) Heap Min"))
+    tree_type = int(input("Jaki rodzaj drzewa chcesz zbudować:\n1) BST\n2) AVL\n3) Heap Min"))
     input_type = int(input("Skąd chcesz pobrać dane:\n1) Z pliku tekstowego\n2) generowane losowo"))
 
     data = create_input_data(input_type)
@@ -78,6 +78,8 @@ while 1:
         tree.print_levels()
         print(f"Czas równoważenia wynosił: {balanceEnd-balanceSt}")
 
+        start=-1
+        end=-1
         if choice==1:
             start=time.time()
             tree.find_min(tree.root)
@@ -91,7 +93,8 @@ while 1:
 
             tree.find_level(key)
         elif choice==4:
-            tree.decreasing(tree)
+            tree.decreasing()
+            print("\n")
         elif choice==5:
 
 
@@ -104,7 +107,6 @@ while 1:
         else:
             print("Nie ma takiej opcji")
     elif tree_type == 2:
-
         tree = AVL()
         data.sort()
         tree.build_from_sorted_list(data)
@@ -158,8 +160,9 @@ while 1:
 
     else:
         print("niepoprawny wybór drzewa")
-    timeDifference=end-start
-    print(f"czas operacji wynosi: {timeDifference}")
+    if end!=-1  and start!=-1:
+        timeDifference=end-start
+        print(f"czas operacji wynosi: {timeDifference}")
     
     
 
